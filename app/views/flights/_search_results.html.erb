@@ -22,7 +22,7 @@
     </div>
 </div>
   <% Flight.where(to_id: params[:to_id]).each do |f| %>
-    <a href="#" class="list-group-item list-group-item-action flex-column">
+    <div href="#" class="list-group-item list-group-item-action flex-column">
     <div class="row">
       <div class="col-md-1">
         <%= f.depart_at.strftime("%H:%m") %>
@@ -39,10 +39,13 @@
       <div class="col-md-1 border-left">
         <%= (f.duration).minutes.after(f.depart_at).strftime("%H:%m")%>
       </div>
-      <div class="col-md-2 border-left">
-        <%= submit_tag "Book", class: "btn btn-primary" %>
+    <%= form_tag('#', method: :get, class:"col-md-2") do |form| %>
+      <div class="row border-left pl-4">
+        <%= radio_button_tag :booked_id, f.id %>
+        <%= submit_tag "Book", class: "btn btn-sm btn-primary" %>
       </div>
+    <% end %>
     </div>
-    </a>
+    </div>
   <% end %>
 </div>
