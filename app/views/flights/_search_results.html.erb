@@ -1,0 +1,48 @@
+<div class="list-group text-center mt-0">
+<div href="#" class="list-group-item list-group-item active">
+    <div class="row">
+      <div class="col-md-1">
+        TIME
+      </div>
+      <div class="col-md-3 border-left">
+        FROM
+      </div>
+      <div class="col-md-3 border-left">
+        TO
+      </div>
+      <div class="col-md-2 border-left">
+        DURATION
+      </div>
+      <div class="col-md-1 border-left">
+        ARRIVAL
+      </div>
+      <div class="col-md-2 border-left">
+        BOOK
+      </div>
+    </div>
+</div>
+  <% Flight.where(to_id: params[:to_id]).each do |f| %>
+    <a href="#" class="list-group-item list-group-item-action flex-column">
+    <div class="row">
+      <div class="col-md-1">
+        <%= f.depart_at.strftime("%H:%m") %>
+      </div>
+      <div class="col-md-3 border-left text-left">
+        [<%= f.from_airport.code %>] <%= f.from_airport.full_name %>
+      </div>
+      <div class="col-md-3 border-left text-left">
+        [<%= f.to_airport.code %>] <%= f.to_airport.full_name %>
+      </div>
+      <div class="col-md-2 border-left">
+        <%= f.duration %> mins
+      </div>
+      <div class="col-md-1 border-left">
+        <%= (f.duration).minutes.after(f.depart_at).strftime("%H:%m")%>
+      </div>
+      <div class="col-md-2 border-left">
+        <%= submit_tag "Book", class: "btn btn-primary" %>
+      </div>
+    </div>
+    </a>
+  <% end %>
+</div>
