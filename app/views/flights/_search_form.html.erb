@@ -1,0 +1,26 @@
+<%= form_for Flight.new, url: "/", method: :get do |f| %>
+
+  <div class="form-row">
+    <div class="col">
+      <%= f.label :from_id, 'From' %>
+      <%= select_tag(:from_id, options_for_select(@airport_options), class: "form-control") %>
+    </div>
+    <div class="col">
+      <%= f.label :to_id, 'To' %>
+      <%= select_tag(:to_id, options_for_select(@airport_options), class: "form-control") %>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="col">
+      <%= f.label :on, 'On' %>
+      <%= select_tag(:on_id, options_for_select(@flight_options), class: "form-control") %>
+    </div>
+    <div class="col">
+      <%= f.label :num_of_passengers, 'Passengers' %>
+      <%= number_field_tag :num_of_passengers, 1, class: "form-control" %>
+    </div>
+    <div class="col m-auto pt-3">
+      <%= f.submit 'Search Flights', class: "btn btn-primary btn-lg m-auto" %>
+    </div>
+  </div>
+<% end %>
