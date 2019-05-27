@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_26_151145) do
+ActiveRecord::Schema.define(version: 2019_05_27_181501) do
 
   create_table "airports", force: :cascade do |t|
     t.string "code"
@@ -19,6 +19,12 @@ ActiveRecord::Schema.define(version: 2019_05_26_151145) do
     t.datetime "updated_at", null: false
     t.string "city"
     t.index ["code"], name: "index_airports_on_code"
+  end
+
+  create_table "bookings", force: :cascade do |t|
+    t.integer "flight_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "flights", force: :cascade do |t|
@@ -30,6 +36,21 @@ ActiveRecord::Schema.define(version: 2019_05_26_151145) do
     t.datetime "updated_at", null: false
     t.index ["from_id"], name: "index_flights_on_from_id"
     t.index ["to_id"], name: "index_flights_on_to_id"
+  end
+
+  create_table "passengers", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "tickets", force: :cascade do |t|
+    t.integer "passenger_id"
+    t.integer "booking_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["passenger_id", "booking_id"], name: "index_tickets_on_passenger_id_and_booking_id", unique: true
   end
 
 end
