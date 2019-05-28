@@ -42,7 +42,7 @@
     <%= form_tag :new_booking, method: :get do |form| %>
       <div class="row border-left pl-4">
         <%= hidden_field_tag :num_of_passengers, params[:num_of_passengers] %>
-        <%= radio_button_tag :booked_id, f.id %>
+        <%= radio_button_tag :flight_id, f.id %>
         <%= submit_tag "Book", class: "btn btn-sm btn-primary" %>
       </div>
     <% end %>

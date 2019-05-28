@@ -5,7 +5,10 @@
   To:  <%= @flight.to_airport.full_name%><br>
   At:  <%= @flight.depart_at%><hr>
 </p>
-<%= form_for @booking, url: '/',method: :get do |f| %>
+<% @flight_id = 3 %>
+<%#= form_for @booking, url: '/',method: :get do |f| %>
+<%= form_for @booking do |f| %>
+  <%= f.hidden_field :flight_id, value: @flight.id%>
   <%= f.fields_for :tickets do |t| %>
     <%= t.fields_for :passenger do |p| %>
       <%= p.label :name %>
@@ -17,4 +20,5 @@
   <%= f.submit %>
 <% end %>
 
+<% flash[:info] = params%>
 <%= params %>
