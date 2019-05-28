@@ -1,16 +1,37 @@
-<h1>Bookings#show</h1>
-
-From: <%= @flight.from_airport.full_name %>
-<br>
-To: <%= @flight.to_airport.full_name %>
-<br>
-At : <%= @flight.depart_at %>
-<br>
-<div class="list-group">
-<% @booking.passengers.each_with_index do |p,i| %>
-  <div class="list-group-item">
-    <%= "Passenger #{i+1}: #{p.name}" %>
-    <br><%= "Email: #{p.email}"%>
+<div class="container">
+  <h1>Bookings#show</h1>
+  
+  <div class="card text-white bg-info mb-3" style="max-width: 118rem;">
+  <div class="card-header">About your flight</div>
+  <div class="card-body">
+    <h5 class="card-title"><%= @flight.depart_at.strftime("%d.%m.%Y %H:%m") %></h5>
+      <p class="card-text">From:<%= @flight.from_airport.full_name %></p>
+      <p class="card-text">To: <%= @flight.to_airport.full_name %></p>
+      <p class="card-text">At : <%= @flight.depart_at %></p>
   </div>
-<% end %>
+</div>
+
+
+  <div class="card-group">
+    <% @booking.passengers.each_with_index do |p,i| %>
+    <br>
+      <div class="card">
+        <div class="card-header">
+          <b><%= "Passenger #{i+1}"%></b>
+        </div>
+        <div class="card-body">
+          <div class="row">
+          <div class="col-md-3"><b>Name:</b></div><div class="col-md-9"> <%= p.name %></div>
+          </div>
+          <div class="row">
+          <div class="col-md-3"><b>Email:</b></div><div class="col-md-9"> <%= p.email %></div>
+          </div>
+          <div class="row">
+          <div class="col-md-3"><b>Ticket no:</b></div><div class="col-md-9"> <%= @booking.tickets[i].id %></div>
+          </div>
+        
+        </div>
+      </div>
+    <% end %>
+  </div>
 </div>
