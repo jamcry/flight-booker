@@ -10,9 +10,12 @@ class BookingsController < ApplicationController
   def create
     @flight = Flight.find(params[:booking][:flight_id])
     @booking = Booking.new(flight: @flight)
-    4.times { @booking.tickets.build(passenger: 
-                    Passenger.new(
-                        name: params[:booking][:tickets_attributes]["0"][:passenger_attributes][:name]))}
+    params[:booking][:tickets_attributes].each do |i,attrs|
+      attrs.each do |i2,attrs2|
+        new_passenger = Passenger.new(name: attrs2[:name], email: attrs2[:email])
+        @booking.tickets.build(passenger: new_passenger)
+      end
+    end
     if @booking.save
       flash[:success] = "CREATED"
       redirect_to root_url
@@ -31,4 +34,8 @@ class BookingsController < ApplicationController
         params.permit(:flight_id)
       end
 
+     # def passenger_params(i)
+     #   {name: params[:booking][:tickets_attributes]["#{i}"][:passenger_attributes][:name],
+     #     email: params[:booking][:tickets_attributes]["#{i}"][:passenger_attributes][:email]}
+     # end
 end
