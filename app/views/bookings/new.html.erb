@@ -1,2 +1,20 @@
 <h1>Bookings#new</h1>
 <p>Find me in app/views/bookings/new.html.erb</p>
+<p>
+  From:  <%= @flight.from_airport.full_name%><br>
+  To:  <%= @flight.to_airport.full_name%><br>
+  At:  <%= @flight.depart_at%><hr>
+</p>
+<%= form_for @booking, url: '/',method: :get do |f| %>
+  <%= f.fields_for :tickets do |t| %>
+    <%= t.fields_for :passenger do |p| %>
+      <%= p.label :name %>
+      <%= p.text_field :name %>
+      <%= p.label :email %>
+      <%= p.email_field :email%>
+    <% end %><br>
+  <% end %>
+  <%= f.submit %>
+<% end %>
+
+<%= params %>
