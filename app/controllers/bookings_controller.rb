@@ -18,7 +18,7 @@ class BookingsController < ApplicationController
     end
     if @booking.save
       flash[:success] = "CREATED"
-      redirect_to root_url
+      redirect_to @booking
     else
       render 'new', params: {flight_id: @flight.id}
     end
@@ -26,6 +26,8 @@ class BookingsController < ApplicationController
 
 
   def show
+    @booking = Booking.find(params[:id])
+    @flight = @booking.flight
   end
 
   private

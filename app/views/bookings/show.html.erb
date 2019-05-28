@@ -1,2 +1,16 @@
 <h1>Bookings#show</h1>
-<p>Find me in app/views/bookings/show.html.erb</p>
+
+From: <%= @flight.from_airport.full_name %>
+<br>
+To: <%= @flight.to_airport.full_name %>
+<br>
+At : <%= @flight.depart_at %>
+<br>
+<div class="list-group">
+<% @booking.passengers.each_with_index do |p,i| %>
+  <div class="list-group-item">
+    <%= "Passenger #{i+1}: #{p.name}" %>
+    <br><%= "Email: #{p.email}"%>
+  </div>
+<% end %>
+</div>
