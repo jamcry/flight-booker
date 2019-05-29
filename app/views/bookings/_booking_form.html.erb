@@ -1,0 +1,22 @@
+<%= form_for @booking do |f| %>
+  <%= f.hidden_field :flight_id, value: @flight.id %>
+  <% i = 1 %>
+  <%= f.fields_for :tickets do |t| %>
+    <%= tag.h5 tag.b "PASSENGER #{i}"%>
+    <%= t.fields_for :passenger do |p| %>
+      <div class="row">
+        <div class="col">
+          <%#= p.label :name %>
+          <%= p.text_field :name, placeholder: "Name Surname", class: "form-control" %>
+        </div>
+        <div class="col">
+          <%#= p.label :email %>
+          <%= p.email_field :email, placeholder: "Email address", class: "form-control" %>
+        </div>
+      </div>
+      <% i+=1 %>
+    <% end %>
+    <hr>
+  <% end %>
+  <%= f.submit 'Create', class: "btn btn-primary" %>
+<% end %>
