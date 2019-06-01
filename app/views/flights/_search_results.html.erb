@@ -36,17 +36,20 @@
       <div class="col-md-2 border-left">
         <%= f.duration %> mins
       </div>
-      <div class="col-md-1 border-left">
+      <div class="col-md-1 border-left border-right">
         <%= (f.duration).minutes.after(f.depart_at).strftime("%H:%m")%>
       </div>
-    <%= form_tag :new_booking, method: :get do |form| %>
-      <div class="row border-left pl-4">
+      <div class="col-md-1 m-auto">
+    <%= form_tag :new_booking, method: :get,id: "new_booking_form" do |form| %>
+      <div class="row pl-4">
         <%= hidden_field_tag :num_of_passengers, params[:num_of_passengers] %>
         <%= radio_button_tag :flight_id, f.id %>
-        <%= submit_tag "Book", class: "btn btn-sm btn-primary" %>
+        </div>
       </div>
+
+      </div>
+      </div>
+      <input type="submit" value="Submit Booking" form="new_booking_form" class="btn btn-primary">
     <% end %>
-    </div>
-    </div>
   <% end %>
 </div>
