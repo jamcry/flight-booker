@@ -1,0 +1,8 @@
+You have booked <%= pluralize(@booking.tickets.count, 'ticket') %> for
+the flight number <%= @booking.flight_id %> at <%= @booking.flight.depart_at %>.
+
+To see the details of your booking, follow this link: <%= booking_url(@booking) %>.
+
+Thanks for choosing us!
+This is a mockup email for a sample flight booking app.
+	

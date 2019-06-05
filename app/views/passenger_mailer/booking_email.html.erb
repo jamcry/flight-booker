@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+	</head>
+	<body>
+		<p>You have booked <%= pluralize(@booking.tickets.count, 'ticket') %> for
+		the flight number <b><%= @booking.flight_id %></b> at <%= @booking.flight.depart_at %>.</p>
+		<p>Click <%= link_to 'here', booking_url(@booking) %> to see the details
+		of your booking.</p>
+		<p>Thanks for choosing us!</p>
+		<small>This is a mockup email for a sample flight booking app.</small>
+	</body>
+</html>
