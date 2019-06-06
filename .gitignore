@@ -32,7 +32,3 @@
 
 # Ignore temporary files
 *.save
-
-# Ignore local files
-/Gemfile.lock
-/.ruby-version
