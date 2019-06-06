@@ -4,6 +4,6 @@ class PassengerMailer < ApplicationMailer
 	def booking_email
 		@passenger = params[:passenger]
 		@booking = params[:booking]
-		mail(to: @user.email, subject: "Your booking confirmation")
+		mail(to: @passenger.email, subject: "Your booking confirmation")
 	end
 end

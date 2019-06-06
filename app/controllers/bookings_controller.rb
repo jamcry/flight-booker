@@ -17,6 +17,9 @@ class BookingsController < ApplicationController
       end
     end
     if @booking.save
+      @booking.passengers.each do |psg|
+        PassengerMailer.with(passenger: psg, booking: @booking).booking_email.deliver_later
+      end
       flash[:success] = "CREATED"
       redirect_to @booking
     else
